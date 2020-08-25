@@ -39,7 +39,7 @@ describe ProspectManagement::SetFieldService do
 
     context "given email and StandardError raised" do
       it "returns error as hash" do
-        prospect_double = object_double(@prospect1, "email=" => true, "verified=" => true)
+        prospect_double = object_double(@prospect1, "email=" => true, "verified=" => true, "assign_attributes" => true)
         allow(prospect_double).to receive(:save!).and_raise(StandardError, "An error message")
         
         call = ProspectManagement::SetFieldService.new.call(logon: "foo", prospect: prospect_double, field_name: "email", newvalue: "baz@example.com")
